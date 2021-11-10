@@ -1,0 +1,76 @@
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title> User Info List </title>
+
+     <style>
+         *{
+             padding: 0;
+             margin: 0;
+             box-sizing: border-box;
+         }
+
+         .table{
+             overflow: scroll;
+         }
+
+         table, th, td, tr{
+             border: 1px solid red;
+         }
+
+         tr,td{
+            padding: 0.5rem 2rem;
+         }
+         
+         tr:nth-child(even){
+             background-color: rgba(22, 196, 109, 0.856);
+         }
+
+     </style>
+ </head>
+ <body>
+    <div class="table">
+    <!-- Displaying the Data from the DBSQLITE -->
+    <h1> List of all Users </h1>
+    <table>
+        <tr>
+            <th> ID </th>
+            <th> First Name </th>
+             <th> Middle Name </th>
+              <th> Last Name </th>
+              <th> Email </th>
+              <th> Details </th>
+        </tr>
+        
+
+        {% for u in data %}
+        <tr>
+            <td> {{ u.id }} </td>
+            <td> {{ u.first_name }} </td>
+            <td> {% if u.middle_name %} 
+                    {{ u.middle_name }}
+                {% else %} 
+                    -
+                {% endif %}
+            </td> 
+            <td> {{ u.last_name }} </td>
+            <td> {{ u.email }} </td>
+            <td>
+                <button>
+                <a href="/crud/detail/{{ u.id }}"> View Details </a>
+            </button>
+
+        </tr>
+        {% endfor %}
+
+
+    </table>
+</div>
+
+     
+ </body>
+ </html>
