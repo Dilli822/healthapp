@@ -1,0 +1,23 @@
+
+
+{% extends 'accounts/base.html' %} 
+
+{% block title %} Accounts | Login {% endblock %}
+{% block content %} 
+
+<h2>
+    This is login.
+</h2>
+ <form method="post">
+     {% csrf_token %}
+
+     {{ form.as_p }}
+
+     <button type="submit">
+         Login
+     </button>
+     <h3> Donot Have an Account?
+     Click Here to join <a href="/accounts/signup/"> signup</a></h3>
+ </form>
+
+{% endblock %}

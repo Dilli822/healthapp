@@ -36,6 +36,8 @@
     <div class="table">
     <!-- Displaying the Data from the DBSQLITE -->
     <h1> List of all Users </h1>
+    <!-- <h2><a href="/crud/create/"> Create New User</a> </h2> -->
+    <h2><a href="{% url 'crud:create' %}"> Create New User </a></h2>
     <table>
         <tr>
             <th> ID </th>
@@ -63,6 +65,16 @@
                 <button>
                 <a href="/crud/detail/{{ u.id }}"> View Details </a>
             </button>
+
+            <button>
+                <a href="/crud/update/{{ u.id }}"> Update </a>
+            </button>
+
+
+            <button>
+                <a href="/crud/delete/{{ u.id }}"> Delete </a>
+            </button>
+
 
         </tr>
         {% endfor %}

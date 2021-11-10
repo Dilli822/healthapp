@@ -43,3 +43,32 @@ def create_user_info(request):
         form = UserInfoModelForm()
 
     return render(request, 'crud/create.html', {'form': form})
+
+
+
+def update_user_info(request, user_id):
+    user_object = get_object_or_404(UserInfo, id=user_id)
+    if request.method == 'POST':
+        form = UserInfoModelForm(request.POST, instance=user_object)
+        if form.is_valid():
+            print("Form is valid")
+            print(form.cleaned_data)
+            form.save()
+            return redirect(f'/crud/detail/{user_id}')
+        else:
+            print("Form is invalid")
+    else:
+        form = UserInfoModelForm(instance=user_object)
+        
+    return render(request, 'crud/update.html', {
+        'form': form
+    })
+
+
+def delete_user_info(request, user_id):
+    user_object = get_object_or_404(UserInfo, id=user_id)
+    user_object.delete()
+
+    # redirect where to go from here
+    return redirect(f'/curd/list/')
+    
